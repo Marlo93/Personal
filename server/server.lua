@@ -1,3 +1,12 @@
+---@author Dylan Malandain.
+---@version 1.0
+--[[
+    File server/server.lua
+    Project Personal Menu
+    Created at 27/05/2022
+    Credit : https://github.com/Marlo93
+--]]
+
 ESX = nil
 TriggerEvent(Config.getESX, function(obj) ESX = obj end)
 
