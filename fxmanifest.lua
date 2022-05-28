@@ -1,3 +1,12 @@
+---@author Dylan Malandain.
+---@version 1.0
+--[[
+    File fxmanifest.lua
+    Project Personal Menu
+    Created at 27/05/2022
+    Credit : https://github.com/Marlo93
+--]]
+
 fx_version('cerulean')
 game('gta5')
 
