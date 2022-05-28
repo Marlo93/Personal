@@ -1,3 +1,12 @@
+---@author Dylan Malandain.
+---@version 1.0
+--[[
+    File client/function.lua
+    Project Personal Menu
+    Created at 27/05/2022
+    Credit : https://github.com/Marlo93
+--]]
+
 Keys.Register('F5', 'F5', 'Ouvrir le menu personnel.', function()
     openPersonal()
 end)
