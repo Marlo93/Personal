@@ -1,3 +1,12 @@
+---@author Dylan Malandain.
+---@version 1.0
+--[[
+    File client/client.lua
+    Project Personal Menu
+    Created at 27/05/2022
+    Credit : https://github.com/Marlo93
+--]]
+
 Citizen.CreateThread(function()
     while ESX == nil do
         TriggerEvent(Config.getESX, function(obj) ESX = obj end)
