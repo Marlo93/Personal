@@ -6,4 +6,5 @@ RageUI Personal Menu work w/ ESX Framework
 › Vous pouvez choisir ou non de mettre les armes en item. <br />
 
 # Dependencies 
-› https://forum.cfx.re/t/release-jsfour-idcard-esx/169787
+Si vous souhaitez les papiers d'identité installer le lien ci-dessous. <br />
+› https://github.com/jonassvensson4/jsfour-idcard 
