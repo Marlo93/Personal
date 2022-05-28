@@ -223,7 +223,6 @@ function openPersonal()
                     end
 
                     if playergroup == 'superadmin' or playergroup == 'admin' or playergroup == 'mod' then
-                        grade = 'Administrateur'
                         RageUI.Button('Administration', nil, {RightLabel = '→'}, true, {
                             onSelected = function()
                             end
