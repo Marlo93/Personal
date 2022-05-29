@@ -378,13 +378,15 @@ function openPersonal()
                             })
                         end
 
+		if Config.showBankWallet then
                         if ESX.PlayerData.accounts[i].name == 'bank' then
                             RageUI.Button(ESX.PlayerData.accounts[i].label, nil, {RightLabel = ''..ESX.Math.GroupDigits(ESX.PlayerData.accounts[i].money).. '~b~ $~s~'}, true, {
                                 onSelected = function()
                                 end
                             })
-                        end
-
+                   	end	
+	            end
+								
                         if ESX.PlayerData.accounts[i].name == 'black_money' then
                             RageUI.Button(ESX.PlayerData.accounts[i].label, nil, {RightLabel = ''..ESX.Math.GroupDigits(ESX.PlayerData.accounts[i].money).. '~c~ $~s~'}, true, {
                                 onSelected = function()
