@@ -7,10 +7,6 @@
     Credit : https://github.com/Marlo93
 --]]
 
-Keys.Register('F5', 'F5', 'Ouvrir le menu personnel.', function()
-    openPersonal()
-end)
-
 function CheckQuantity(number)
     number = tonumber(number)
     if type(number) == 'number' then
