@@ -101,32 +101,32 @@ Citizen.CreateThread(function()
     end
 end)
 
-local open = false
-local main = RageUI.CreateMenu(Config.nameServer, 'Que voulez-vous faire ?', 50, 200)
-local aboutMe = RageUI.CreateSubMenu(main, Config.nameServer, 'Que voulez-vous faire ?')
-local inventory = RageUI.CreateSubMenu(aboutMe, 'Inventaire', 'Que voulez-vous faire ?')
-local weapon = RageUI.CreateSubMenu(main, 'Gestion d\'armes', 'Que voulez-vous faire ?')
-local insideWeapon = RageUI.CreateSubMenu(weapon, 'Gestion d\'armes', 'Que voulez-vous faire ?')
-local insideInventory = RageUI.CreateSubMenu(inventory, 'Inventaire', 'Que voulez-vous faire ?')
-local wallet = RageUI.CreateSubMenu(aboutMe, 'Portefeuille', 'Que voulez-vous faire ?')
-local identity = RageUI.CreateSubMenu(aboutMe, 'Informations', 'Que voulez-vous faire ?')
-local clothes = RageUI.CreateSubMenu(main, 'Vêtements', 'Que voulez-vous faire ?')
-local accessories = RageUI.CreateSubMenu(clothes, 'Accessoires', 'Que voulez-vous faire ?')
-local settings = RageUI.CreateSubMenu(main, 'Paramètres', 'Que voulez-vous faire ?')
-local gestionCar = RageUI.CreateSubMenu(main, 'Gestion véhicule', 'Que voulez-vous faire ?')
-local getInformationCar = RageUI.CreateSubMenu(gestionCar, 'Informations', 'Que voulez-vous faire ?')
-local secondGestionCar = RageUI.CreateSubMenu(gestionCar, 'Gestion véhicule', 'Que voulez-vous faire ?')
-local entreprise = RageUI.CreateSubMenu(main, 'Entreprise', 'Que voulez-vous faire ?')
-local organisation = RageUI.CreateSubMenu(main, 'Organisation', 'Que voulez-vous faire ?')
-local administration = RageUI.CreateSubMenu(main, 'Administration', 'Que voulez-vous faire ?')
-local gestionPlayer = RageUI.CreateSubMenu(administration, 'Gestion', 'Que voulez-vous faire ?')
-local utilitary = RageUI.CreateSubMenu(administration, 'Utilitaires', 'Que voulez-vous faire ?')
-local copyPositionforUtilitary = RageUI.CreateSubMenu(utilitary, 'Utilitaires', 'Que voulez-vous faire ?')
-local gestionCarAdministration = RageUI.CreateSubMenu(administration, 'Gestion', 'Que voulez-vous faire ?')
-local managePlayer = RageUI.CreateSubMenu(gestionPlayer, 'Gestion', 'Que voulez-vous faire ?')
-main.Closed = function()
-    open = false
-end
+Menu = {}
+Menu.Toggle = false
+function Menu:Create()
+    Menu.Toggle = true
+main = RageUI.CreateMenu(Config.nameServer, 'Que voulez-vous faire ?', 50, 200)
+aboutMe = RageUI.CreateSubMenu(main, Config.nameServer, 'Que voulez-vous faire ?')
+inventory = RageUI.CreateSubMenu(aboutMe, 'Inventaire', 'Que voulez-vous faire ?')
+weapon = RageUI.CreateSubMenu(main, 'Gestion d\'armes', 'Que voulez-vous faire ?')
+insideWeapon = RageUI.CreateSubMenu(weapon, 'Gestion d\'armes', 'Que voulez-vous faire ?')
+insideInventory = RageUI.CreateSubMenu(inventory, 'Inventaire', 'Que voulez-vous faire ?')
+wallet = RageUI.CreateSubMenu(aboutMe, 'Portefeuille', 'Que voulez-vous faire ?')
+identity = RageUI.CreateSubMenu(aboutMe, 'Informations', 'Que voulez-vous faire ?')
+clothes = RageUI.CreateSubMenu(main, 'Vêtements', 'Que voulez-vous faire ?')
+accessories = RageUI.CreateSubMenu(clothes, 'Accessoires', 'Que voulez-vous faire ?')
+settings = RageUI.CreateSubMenu(main, 'Paramètres', 'Que voulez-vous faire ?')
+gestionCar = RageUI.CreateSubMenu(main, 'Gestion véhicule', 'Que voulez-vous faire ?')
+getInformationCar = RageUI.CreateSubMenu(gestionCar, 'Informations', 'Que voulez-vous faire ?')
+secondGestionCar = RageUI.CreateSubMenu(gestionCar, 'Gestion véhicule', 'Que voulez-vous faire ?')
+entreprise = RageUI.CreateSubMenu(main, 'Entreprise', 'Que voulez-vous faire ?')
+organisation = RageUI.CreateSubMenu(main, 'Organisation', 'Que voulez-vous faire ?')
+administration = RageUI.CreateSubMenu(main, 'Administration', 'Que voulez-vous faire ?')
+gestionPlayer = RageUI.CreateSubMenu(administration, 'Gestion', 'Que voulez-vous faire ?')
+utilitary = RageUI.CreateSubMenu(administration, 'Utilitaires', 'Que voulez-vous faire ?')
+copyPositionforUtilitary = RageUI.CreateSubMenu(utilitary, 'Utilitaires', 'Que voulez-vous faire ?')
+gestionCarAdministration = RageUI.CreateSubMenu(administration, 'Gestion', 'Que voulez-vous faire ?')
+managePlayer = RageUI.CreateSubMenu(gestionPlayer, 'Gestion', 'Que voulez-vous faire ?')
 main:SetRectangleBanner(Config.ColorBanner.r, Config.ColorBanner.g, Config.ColorBanner.b, Config.ColorBanner.a)
 aboutMe:SetRectangleBanner(Config.ColorBanner.r, Config.ColorBanner.g, Config.ColorBanner.b, Config.ColorBanner.a)
 inventory:SetRectangleBanner(Config.ColorBanner.r, Config.ColorBanner.g, Config.ColorBanner.b, Config.ColorBanner.a)
@@ -149,18 +149,17 @@ utilitary:SetRectangleBanner(Config.ColorBanner.r, Config.ColorBanner.g, Config.
 copyPositionforUtilitary:SetRectangleBanner(Config.ColorBanner.r, Config.ColorBanner.g, Config.ColorBanner.b, Config.ColorBanner.a)
 gestionCarAdministration:SetRectangleBanner(Config.ColorBanner.r, Config.ColorBanner.g, Config.ColorBanner.b, Config.ColorBanner.a)
 managePlayer:SetRectangleBanner(Config.ColorBanner.r, Config.ColorBanner.g, Config.ColorBanner.b, Config.ColorBanner.a)
+main.Closed = function()
+    Menu.Toggle = false
+    end
+end
 
 function openPersonal()
-    if open then
-        open = false
-        RageUI.Visible(main, false)
-        return
-    else
-        open = true
-        RageUI.Visible(main, true)
-
-        Citizen.CreateThread(function()
-            while open do
+    Menu:Create()
+    RageUI.Visible(main, true)
+    while true do
+        Citizen.Wait(2.0)
+        if Menu.Toggle then
 
                 RageUI.IsVisible(main, function()
 
@@ -1145,11 +1144,45 @@ function openPersonal()
                 
                 end)
 
-                Wait(0)
+            else
+                RageUI.Visible(main, false)
+                RageUI.Visible(aboutMe, false)
+                RageUI.Visible(inventory, false)
+                RageUI.Visible(weapon, false)
+                RageUI.Visible(insideWeapon, false)
+                RageUI.Visible(insideInventory, false)
+                RageUI.Visible(wallet, false)
+                RageUI.Visible(identity, false)
+                RageUI.Visible(clothes, false)
+                RageUI.Visible(accessories, false)
+                RageUI.Visible(settings, false)
+                RageUI.Visible(gestionCar, false)
+                RageUI.Visible(getInformationCar, false)
+                RageUI.Visible(secondGestionCar, false)
+                RageUI.Visible(entreprise, false)
+                RageUI.Visible(organisation, false)
+                RageUI.Visible(administration, false)
+                RageUI.Visible(gestionPlayer, false)
+                RageUI.Visible(utilitary, false)
+                RageUI.Visible(copyPositionforUtilitary, false)
+                RageUI.Visible(gestionCarAdministration, false)
+                RageUI.Visible(managePlayer, false)
+                if not RageUI.Visible(main) and not RageUI.Visible(aboutMe) and not RageUI.Visible(inventory) and not RageUI.Visible(weapon) and not RageUI.Visible(insideWeapon) and not RageUI.Visible(insideInventory) and not RageUI.Visible(wallet) and not RageUI.Visible(identity) and not RageUI.Visible(clothes) and not RageUI.Visible(accessories) and not RageUI.Visible(settings) and not RageUI.Visible(gestionCar) and not RageUI.Visible(getInformationCar) and not RageUI.Visible(secondGestionCar) and not RageUI.Visible(entreprise) and not RageUI.Visible(organisation) and not RageUI.Visible(administration) and not RageUI.Visible(gestionPlayer) and not RageUI.Visible(utilitary) and not RageUI.Visible(copyPositionforUtilitary) and not RageUI.Visible(gestionCarAdministration) and not RageUI.Visible(managePlayer) then
+                    main = RMenu:DeleteType('main', true)
+                end
+                return false
             end
-        end)
+        end
     end
-end
+
+Keys.Register('F5', 'F5', 'Ouvrir le menu personnel.', function()
+    Menu.Toggle = not Menu.Toggle
+    if Menu.Toggle then 
+    openPersonal()
+else
+    main = RMenu:DeleteType('main', true) 
+    end
+end)
 
 local noclip = false
 local noclip_speed = 1.0
